@@ -4,7 +4,7 @@ Dynamo Feeder is a lightweight framework that allows you to add property sets wi
 
 ## 🧩 Samples
 
-You can easily try the framework with some [https://github.com/karfous/DynamoC3DFeeder/tree/main/samples](samples) I have prepared for you.
+You can easily try the framework with some [samples](samples) I have prepared for you.
 
 ## Version
 
@@ -20,7 +20,7 @@ Let me know if working elsewhere :)
 
 - Civil 2024 with all patches
 - Dynamo package: Civil3DToolkit by paolo.serra@autodesk.com
-- copy the content from [https://github.com/karfous/DynamoC3DFeeder/tree/main/package](package) to your dynamo package destination folder for example ...\AppData\Roaming\Autodesk\C3D 2024\Dynamo\2.xx\packages
+- copy the content from [/package](package) to your dynamo package destination folder for example ...\AppData\Roaming\Autodesk\C3D 2024\Dynamo\2.xx\packages
 
 ## ❓ About the workflow
 
@@ -38,7 +38,7 @@ I was wondering how can I easily add metadata to AutoCAD or Civil 3D objects. Yo
 
 - define assemblies
 - define proper codes for subassemblies shapes
-- define property sets and values definition - see [https://github.com/karfous/DynamoC3DFeeder/blob/main/samples/corridor/input/psetsdefs.jsonc](jsonc) in samples
+- define property sets and values definition - see [jsonc](https://github.com/karfous/DynamoC3DFeeder/blob/main/samples/corridor/input/psetsdefs.jsonc) in samples
 - build your corridor and export solids
 - use the script and enjoy
 
@@ -46,11 +46,11 @@ I was wondering how can I easily add metadata to AutoCAD or Civil 3D objects. Yo
 
 ### 🐞 BUG report and cooperation
 
-Create an [https://github.com/karfous/DynamoC3DFeeder/issues](issue) in order to inform others about possible problems and bugs.
+Create an [issue](https://github.com/karfous/DynamoC3DFeeder/issues) in order to inform others about possible problems and bugs.
 
 ### 💡 Suggestions
 
-Create an [https://github.com/karfous/DynamoC3DFeeder/issues](issue) so we can discuss your intentions and coordinate our time. Discuss your thought before pull request please.
+Create an [issue](https://github.com/karfous/DynamoC3DFeeder/issues) so we can discuss your intentions and coordinate our time. Discuss your thought before pull request please.
 
 ### 💪 Be independent
 
