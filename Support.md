@@ -6,4 +6,4 @@ I super happy if I made your life easier.
 - ⭐ Star the repository
 - 🗣️ Share it with others on social media #dynamoC3Dfeeder
 
-<img src="/pics/coffe.png" width="500"/>
+<img src="/pics/coffe.png" width="300"/>
