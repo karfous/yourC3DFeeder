@@ -58,6 +58,6 @@ You can easily "fork" the repository and make your edits, improvements or bug fi
 
 ## 😊 Support
 
-⭐ Star the repository
-🗣️ Share it with others on social media #dynamoC3Dfeeder
-☕ Buy me a coffee (optional)
+- ⭐ Star the repository
+- 🗣️ Share it with others on social media #dynamoC3Dfeeder
+- ☕ [Buy me a coffee](https://coff.ee/jakubkares)
