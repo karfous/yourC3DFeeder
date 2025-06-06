@@ -1,6 +1,6 @@
 # 😊 Consider support
 
-I super happy if I made your life easier.
+I am super happy if I made your life easier with this framework.
 
 - ☕ [Buy me a coffee](https://coff.ee/jakubkares)
 - ⭐ Star the repository
