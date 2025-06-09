@@ -62,6 +62,17 @@ CORRECT => YOUR-NAME
     }
   },
 
+  // YOU can sometimes forget to define a placeholder in JSON
+  // script will inform you about this
+  "MISSING-PLACEHOLDER": {
+    "psets": [],
+    "props": {
+      "PSET-COLOR": {
+        "EXACT-COLOR": "{{HOOPS-THIS-WAS-NOT-DEFINED}}"
+      }
+    }
+  },
+
   "COLOR-RED": {
     // THIS object will have an empty property set - author
     "psets": ["PSET-AUTHOR"],

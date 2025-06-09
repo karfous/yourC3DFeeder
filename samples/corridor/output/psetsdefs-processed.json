@@ -1,0 +1,57 @@
+{
+  "JAKUB-KARES": {
+    "PSET-AUTHOR": {
+      "AUTHOR": "JAKUB KARES"
+    }
+  },
+  "MISSING-PLACEHOLDER": {
+    "PSET-COLOR": {
+      "EXACT-COLOR": "{{HOOPS-THIS-WAS-NOT-DEFINED}}"
+    }
+  },
+  "COLOR-PLACEHOLDER": {
+    "PSET-COLOR": {
+      "EXACT-COLOR": "WHITE"
+    },
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    }
+  },
+  "PSET-PHASE": {},
+  "COLOR-BLUE": {
+    "PSET-COLOR": {
+      "EXACT-COLOR": "BLUE"
+    },
+    "PSET-AUTHOR": {
+      "AUTHOR": "JAKUB KARES"
+    },
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    }
+  },
+  "COLOR-BASE": {
+    "PSET-COLOR": {
+      "EXACT-COLOR": "BLACK"
+    },
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    }
+  },
+  "PSET-AUTHOR": {},
+  "PHASE": {
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    }
+  },
+  "SAMPLE-EXAMPLE": {},
+  "COLOR-RED": {
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    },
+    "PSET-COLOR": {
+      "EXACT-COLOR": "RED"
+    },
+    "PSET-AUTHOR": {}
+  },
+  "PSET-COLOR": {}
+}

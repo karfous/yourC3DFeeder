@@ -6,4 +6,4 @@ I am super happy if I made your life easier with this framework.
 - ⭐ Star the repository
 - 🗣️ Share it with others on social media #dynamoC3Dfeeder
 
-<img src="/pics/coffe.png" width="300"/>
+<img src="/pics/coffe.png" width="200"/>
