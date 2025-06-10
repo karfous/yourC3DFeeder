@@ -5,6 +5,7 @@
 - Start Civil 3D
 - Start Dynamo
 - Feeder package will be available
+- Install Civil3DToolkit package by Paolo Serra (thank you Paolo :) )
 - Continue to [samples section](../samples/corridor)
 
 ## Version
