@@ -2,6 +2,17 @@
 
 This is a corridor sample that shows the most common use case. You usually want to create a corridor, make some changes, change subassemblies, add more regions etc. This is the common task for every construction project. **And it is covered in this sample**
 
+## What to do?
+- Download all files in input folder
+- Open DWG file
+- Open Dynamo
+- Open Feeder.dyn script
+- Make sure you installed Feeder package correctly
+- Select objects (already preselected in the script - I use only SOLIDS )
+- Update json paths
+- RUN script
+- All solids now have property sets and its values
+
 ## Input
 
 What are our inputs?
