@@ -11,7 +11,7 @@ Sorry guys, it would be better to use AUTODESK Publish package function, but I d
 - Add a path to this custom package inside DynamoSettings.xml
 
   - find ...\Roaming\Autodesk\C3D {some version}\Dynamo\ {some version}\DynamoSettings.xml
-  - find CustomPackageFolder section in XML and add string below - C:\Users\KaresJak\AppData\Roaming\Autodesk\C3D 2024\Dynamo\2.19\packages\yourC3DFeeder
+  - find CustomPackageFolder section in XML and add path to your package - checkout the picture below
 
     <img src="/pics/customPackage.png" width="300"/>
 
