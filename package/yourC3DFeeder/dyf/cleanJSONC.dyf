@@ -1,0 +1,191 @@
+{
+  "Uuid": "33aa8dce-5dde-4bf5-a4d8-51a02d781288",
+  "IsCustomNode": true,
+  "Category": "yourC3DFeeder.JSON",
+  "Description": "Create a valid JSON string from JSONC string. What is JSONC? It a format allowing you to add comments like // a comment or /* a multiline comment  */ and comments are not valid when parsing JSON - so you need to get rid of them. ",
+  "Name": "cleanJSONC",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "DesignScript.Builtin.Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      },
+      "Autodesk.Object": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.Object",
+        "Value": "AutoCADNodes.dll"
+      },
+      "Autodesk.AutoCAD.DynamoNodes.Object": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.Object",
+        "Value": "AutoCADNodes.dll"
+      },
+      "DSCore.Object": {
+        "Key": "DSCore.Object",
+        "Value": "DSCoreNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "jsonStringWithComments",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "34a88467614f4597919d3e45b6bcecbf",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "34a48b6e6cd34d3e88b57bc8c740235d",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "JSONString",
+      "Id": "e3ad2a523f474dc19ec38e4ac2d20df6",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "2ef45c6748944840bf936c5b91ecdb79",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "import re\r\n\r\ndef remove_jsonc_comments(jsonc_string):\r\n    # Remove multiline comments (/* ... */)\r\n    jsonc_string = re.sub(r'/\\*.*?\\*/', '', jsonc_string, flags=re.DOTALL)\r\n    # Remove single-line comments (//...) that are not in string literals\r\n    def strip_line_comments(line):\r\n        in_str = False\r\n        escape = False\r\n        for i in range(len(line)):\r\n            char = line[i]\r\n            if char == '\"' and not escape:\r\n                in_str = not in_str\r\n            if char == '\\\\' and not escape:\r\n                escape = True\r\n                continue\r\n            if not in_str and line[i:i+2] == '//':\r\n                return line[:i]\r\n            escape = False\r\n        return line\r\n\r\n    lines = jsonc_string.splitlines()\r\n    cleaned_lines = [strip_line_comments(line) for line in lines]\r\n    return '\\n'.join(cleaned_lines)\r\n\r\n# Dynamo input\r\njsonc_string = IN[0]\r\n\r\n# Process\r\nclean_json_string = remove_jsonc_comments(jsonc_string)\r\n\r\n# Dynamo output\r\nOUT = clean_json_string\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "e823253b6e134f699893229ac418fbbe",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "38badd3d39424ddfb291d9083e5d7306",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e52699de9be84dc7ab4adf6b256c7ad0",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "34a48b6e6cd34d3e88b57bc8c740235d",
+      "End": "38badd3d39424ddfb291d9083e5d7306",
+      "Id": "80469db3c6824419ab84bd112127447b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e52699de9be84dc7ab4adf6b256c7ad0",
+      "End": "2ef45c6748944840bf936c5b91ecdb79",
+      "Id": "9b4aa715062945649c9d5beaf1fb9667",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Author": "None provided",
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.4.6671",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "34a88467614f4597919d3e45b6bcecbf",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "e3ad2a523f474dc19ec38e4ac2d20df6",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "e823253b6e134f699893229ac418fbbe",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

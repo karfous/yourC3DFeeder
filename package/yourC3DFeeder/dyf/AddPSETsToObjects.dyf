@@ -1,0 +1,430 @@
+{
+  "Uuid": "4662d911-d9dd-4f31-b1cb-b07bbc8bea34",
+  "IsCustomNode": true,
+  "Category": "yourC3DFeeder.PSET",
+  "Description": "",
+  "Name": "AddPSETsToObjects",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "DesignScript.Builtin.Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4644f5599d6c49d0a7feba659c71b18f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f1b3097ae88c4914809f741570c80454",
+          "Name": "object",
+          "Description": "Autodesk.AutoCAD.DynamoNodes.Object",
+          "UsingDefaultValue": false,
+          "Level": 3,
+          "UseLevels": true,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "98bd135f401c4002b85edafbacbfd736",
+          "Name": "propertySetDefinitionName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2e137072e5484351971510102bcd1f01",
+          "Name": "Object",
+          "Description": "Object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Object.AddPropertySet@string",
+      "Replication": "Shortest",
+      "Description": "Add a property set to the object by property set definition name.\n\nObject.AddPropertySet (propertySetDefinitionName: string): Object"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e9669924f7e343a78b2e512c1a5b3032",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0f72bd5c45314dbfbdebe35f8eb912ca",
+          "Name": "item",
+          "Description": "The item to repeat.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": true
+        },
+        {
+          "Id": "c5bcf0535b474f2a9fda05dbc99c1490",
+          "Name": "amount",
+          "Description": "The number of times to repeat.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3c644d9002b54b908033e337cba1df7f",
+          "Name": "list",
+          "Description": "List of repeated items.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.OfRepeatedItem@var[]..[],int",
+      "Replication": "Shortest",
+      "Description": "Creates a list containing the given item the given number of times.\n\nList.OfRepeatedItem (item: var[]..[], amount: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8b8858d7dde141a3980a5a3c52bb2c89",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "547a0e7215284cef9720f6abc4bfd26f",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "14e91f6d7f38455b9de58a29acadfab9",
+          "Name": "int",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "ObjectsPSETSNames",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "8be2035b5b1547ff92fd5c5c6a84f9bd",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d6cb572929464f0ab4db4bb545ca4316",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "YourObjects",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "a1f7924b3c894c61ab5b1937e5f4635e",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6a5133ec776542dba9a14e1d99f9a631",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "ObjectsWithPSETs",
+      "Id": "b79b286f2cab41a4a8458e9161df6dd2",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "b470a39fe0424e52bf3521e5d1b4aadb",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "51169b06e8504874ab2cded34f42e603",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a188dec7bc224efd8c10e1a7d9a62d51",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 3,
+          "UseLevels": true,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0005f75581c446859b8b507651c11f4e",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Input: IN[0] - list of items (some may be None/null)\r\n\r\ninput_list = IN[0]\r\n\r\nresult = []\r\ndefault_output = []\r\n# Validate input\r\nif not isinstance(input_list, list):\r\n    result = \"Input must be a list.\"\r\nelse:\r\n    for item in input_list:\r\n        if item is None:\r\n            result.append(default_output)\r\n        elif isinstance(item, dict):\r\n            result.append(item)\r\n        else:\r\n            result.append(item)  # keep other non-null values as-is if needed\r\n\r\nOUT = result\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "b36776822524468581200a9393cbd4c6",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "9ba8ce46225145b395be8d1eea218dd2",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cd565bf4904e4671b62a7083712766b0",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2e137072e5484351971510102bcd1f01",
+      "End": "a188dec7bc224efd8c10e1a7d9a62d51",
+      "Id": "3f21d0fa6e8947e6bb3b71641bbbe41d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c644d9002b54b908033e337cba1df7f",
+      "End": "f1b3097ae88c4914809f741570c80454",
+      "Id": "d48688c7ad5e496f86cf28aa4ac86f20",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "14e91f6d7f38455b9de58a29acadfab9",
+      "End": "c5bcf0535b474f2a9fda05dbc99c1490",
+      "Id": "035dda0fe6c549deb60442eeb784786d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d6cb572929464f0ab4db4bb545ca4316",
+      "End": "98bd135f401c4002b85edafbacbfd736",
+      "Id": "52d5881a35c14304b91d0834a9752b46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d6cb572929464f0ab4db4bb545ca4316",
+      "End": "547a0e7215284cef9720f6abc4bfd26f",
+      "Id": "4fee483216ba40a68156652bd65498d5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6a5133ec776542dba9a14e1d99f9a631",
+      "End": "0f72bd5c45314dbfbdebe35f8eb912ca",
+      "Id": "8b04587695ef42cb96b4b539ecf9135f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0005f75581c446859b8b507651c11f4e",
+      "End": "9ba8ce46225145b395be8d1eea218dd2",
+      "Id": "b378d57b7f79482f9f95e21b7868322e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cd565bf4904e4671b62a7083712766b0",
+      "End": "b470a39fe0424e52bf3521e5d1b4aadb",
+      "Id": "74369a3105994e02ae3418fff01f6d49",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Author": "None provided",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.4.6671",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4644f5599d6c49d0a7feba659c71b18f",
+        "Name": "Object.AddPropertySet",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 876.29470090117775,
+        "Y": 60.042193703082432
+      },
+      {
+        "Id": "e9669924f7e343a78b2e512c1a5b3032",
+        "Name": "List.OfRepeatedItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 518.582278830324,
+        "Y": 350.42040139552932
+      },
+      {
+        "Id": "8b8858d7dde141a3980a5a3c52bb2c89",
+        "Name": "List.Count",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 205.73160294772742,
+        "Y": 470.2651512285172
+      },
+      {
+        "Id": "8be2035b5b1547ff92fd5c5c6a84f9bd",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -308.12674100032405,
+        "Y": 156.52191164188713
+      },
+      {
+        "Id": "a1f7924b3c894c61ab5b1937e5f4635e",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -254.10442379338679,
+        "Y": 323.45646122484641
+      },
+      {
+        "Id": "b79b286f2cab41a4a8458e9161df6dd2",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2167.154416431039,
+        "Y": 46.278559600285405
+      },
+      {
+        "Id": "51169b06e8504874ab2cded34f42e603",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1374.592965323943,
+        "Y": 54.495091354075441
+      },
+      {
+        "Id": "b36776822524468581200a9393cbd4c6",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1767.3872917493875,
+        "Y": 106.39676902633857
+      }
+    ],
+    "Annotations": [],
+    "X": -403.3291905282602,
+    "Y": 76.4591834737065,
+    "Zoom": 0.76152673577534347
+  }
+}

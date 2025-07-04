@@ -1,0 +1,424 @@
+{
+  "Uuid": "25b53ff1-e562-4428-8fe7-fc82eacf8826",
+  "IsCustomNode": true,
+  "Category": "yourC3DFeeder.PSET",
+  "Description": "",
+  "Name": "PreparePSETsNames",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "DesignScript.Builtin.Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "05f4c3ceb6814d46a1795198da59c692",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a00ffc8064ad4fd68c1f8d22d2a407c2",
+          "Name": "dictionary",
+          "Description": "DesignScript.Builtin.Dictionary",
+          "UsingDefaultValue": false,
+          "Level": 1,
+          "UseLevels": true,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5ee2f24d260d45f1854102ecff2aaf43",
+          "Name": "keys",
+          "Description": "Keys of the Dictionary",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DesignScript.Builtin.Dictionary.Keys",
+      "Replication": "Auto",
+      "Description": "Produces the keys in a Dictionary.\n\nDictionary.Keys: string[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "bb6a2cc505ff4a97917856b289f12d3d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cfc7018ab98c4fc6bd498f7db1cff6d4",
+          "Name": "dictionary",
+          "Description": "DesignScript.Builtin.Dictionary",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6fbdfb7fd5824630a531ab4a7391840f",
+          "Name": "key",
+          "Description": "The key in the Dictionary to obtain value for\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ef9daa1c69ec4494a25ebe857a008abf",
+          "Name": "value",
+          "Description": "Value at the specified key or null if it is not set",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DesignScript.Builtin.Dictionary.ValueAtKey@string",
+      "Replication": "Auto",
+      "Description": "Obtain the value at a specified key\n\nDictionary.ValueAtKey (key: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "PSETsDefinitionsByLayer",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "306b584b27004db8a1fffe287889699d",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5f76702e61eb47c2aca743374c65bca3",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "uniqueObjectsLayers",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "3eacaceceefa4efebf3d14f48383cba6",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1ca6d57827874e928ce8861af2c56f5f",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "PSETsNames",
+      "Id": "e9b0aa4163cf4560bc64e66b4b05d89a",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "be82ec7b7d8d47c6a8063462f5bdb842",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Input: IN[0] - list of items (some may be None/null)\r\n\r\ninput_list = IN[0]\r\n\r\nresult = []\r\n\r\n# Validate input\r\nif not isinstance(input_list, list):\r\n    result = \"Input must be a list.\"\r\nelse:\r\n    for item in input_list:\r\n        if item is None:\r\n            result.append({})\r\n        elif isinstance(item, dict):\r\n            result.append(item)\r\n        else:\r\n            result.append(item)  # keep other non-null values as-is if needed\r\n\r\nOUT = result\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "7dc2fa1e3bab433eb57bd8db114485b1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "bcbf9f3d6fe64b6ca51255fee65a97f9",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5340f570f88b422c84364eceeaca2b51",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "psetDefsDic = IN[0]\r\nobjLays = IN[1]\r\n\r\nresult = []\r\n\r\n# Validate input\r\nif not isinstance(objLays, list):\r\n    result = \"Input must be a list.\"\r\nelse:\r\n    for objLay in objLays:\r\n        try:\r\n            test = psetDefsDic[objLay]\r\n        except:\r\n            result.append(objLay)    \r\n\r\nOUT = result\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "2db75f5d015e4ac0957f2c32b35eee8b",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "601dd0f76cf44b1f878b4fc7de6ee5a3",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e947c317fed435b9eae8e8f3e0110df",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1769190f266f44509e2f6f6501aedf71",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "missingLayersDefinitions",
+      "Id": "01485710fc5e4347b04e6641364d505c",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "ffa7e7c288bb464881bcab3ada73892c",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5ee2f24d260d45f1854102ecff2aaf43",
+      "End": "be82ec7b7d8d47c6a8063462f5bdb842",
+      "Id": "4d039c0c30cd4b28808dcbdfcd755cf3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ef9daa1c69ec4494a25ebe857a008abf",
+      "End": "bcbf9f3d6fe64b6ca51255fee65a97f9",
+      "Id": "34477348edec49bf933754d30a0e6d4a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5f76702e61eb47c2aca743374c65bca3",
+      "End": "cfc7018ab98c4fc6bd498f7db1cff6d4",
+      "Id": "f70518323e664087b5dc27e57c286168",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5f76702e61eb47c2aca743374c65bca3",
+      "End": "601dd0f76cf44b1f878b4fc7de6ee5a3",
+      "Id": "000fa761b02e4c15870dd290ab38a299",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1ca6d57827874e928ce8861af2c56f5f",
+      "End": "6fbdfb7fd5824630a531ab4a7391840f",
+      "Id": "2b455311b02c4b028eaf141a5dc678a1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1ca6d57827874e928ce8861af2c56f5f",
+      "End": "0e947c317fed435b9eae8e8f3e0110df",
+      "Id": "fbbefbf05eaf42878ac5809b1cd48fc0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5340f570f88b422c84364eceeaca2b51",
+      "End": "a00ffc8064ad4fd68c1f8d22d2a407c2",
+      "Id": "1eb85a45114042acbfe67e22b824bf91",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1769190f266f44509e2f6f6501aedf71",
+      "End": "ffa7e7c288bb464881bcab3ada73892c",
+      "Id": "acbfa89062f442ada9ab9da6e175bf17",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Author": "None provided",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.4.6671",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "05f4c3ceb6814d46a1795198da59c692",
+        "Name": "Dictionary.Keys - pset keys names",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1299.4806762160606,
+        "Y": -11.409125246234453
+      },
+      {
+        "Id": "bb6a2cc505ff4a97917856b289f12d3d",
+        "Name": "Dictionary.ValueAtKey",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 423.56211852821662,
+        "Y": -87.129577574405971
+      },
+      {
+        "Id": "306b584b27004db8a1fffe287889699d",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -265.87537091988128,
+        "Y": -16.617210682492583
+      },
+      {
+        "Id": "3eacaceceefa4efebf3d14f48383cba6",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -247.67811104480575,
+        "Y": 167.76384150934439
+      },
+      {
+        "Id": "e9b0aa4163cf4560bc64e66b4b05d89a",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2041.6883724161507,
+        "Y": -11.890372029771868
+      },
+      {
+        "Id": "7dc2fa1e3bab433eb57bd8db114485b1",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 892.01822223196245,
+        "Y": -6.8369897696829867
+      },
+      {
+        "Id": "2db75f5d015e4ac0957f2c32b35eee8b",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 901.22828968858948,
+        "Y": 264.17484534026221
+      },
+      {
+        "Id": "01485710fc5e4347b04e6641364d505c",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2004.5566418812009,
+        "Y": 230.14750327142252
+      }
+    ],
+    "Annotations": [],
+    "X": -20.873419802308263,
+    "Y": 159.82321160582873,
+    "Zoom": 0.71732242643580957
+  }
+}

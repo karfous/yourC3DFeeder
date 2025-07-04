@@ -1,0 +1,24 @@
+{
+    "license": "MIT",
+    "file_hash": null,
+    "name": "yourC3DFeeder",
+    "version": "1.0.1",
+    "description": "",
+    "group": "",
+    "keywords": null,
+    "dependencies": [],
+    "host_dependencies": [
+        "Civil 3D",
+        "CPython3"
+    ],
+    "contents": "",
+    "engine_version": "2.19.4.6671",
+    "engine": "dynamo",
+    "engine_metadata": "",
+    "site_url": "https://github.com/karfous/yourC3DFeeder/tree/main",
+    "repository_url": "https://github.com/karfous/yourC3DFeeder/tree/main",
+    "contains_binaries": false,
+    "node_libraries": [],
+    "copyright_holder": "jakub.kares",
+    "copyright_year": "2025"
+}

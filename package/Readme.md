@@ -1,11 +1,29 @@
 # Install
 
+Sorry guys, it would be better to use AUTODESK Publish package function, but I do not have time to cover this so only copy paste solution is now available
+
+## Do this ...
+
 - Turn off your Civil 3D app
-- Copy the content from this folder inside C:\Users\ {user} \AppData\Roaming\Autodesk\C3D {some version} \Dynamo\ {some version} \packages
+- Find Roaming folder C:\Users\ {your USER}\AppData\Roaming\
+- Find Dynamo packages folder ...\Roaming\Autodesk\C3D {some version}\Dynamo\ {some version}\packages
+- Copy the package inside package folder ...\packages\yourC3DFeeder
+- Add a path to this custom package inside DynamoSettings.xml
+
+  - find ...\Roaming\Autodesk\C3D {some version}\Dynamo\ {some version}\DynamoSettings.xml
+  - find CustomPackageFolder section in XML and add string below
+
+    <CustomPackageFolders>
+      <string>C:\Users\KaresJak\AppData\Roaming\Autodesk\C3D 2024\Dynamo\2.19\packages\yourC3DFeeder</string>
+    </CustomPackageFolders>
+
+- Hey, you are done ✅
+
+## After install ...
+
 - Start Civil 3D
 - Start Dynamo
 - Feeder package will be available
-- Install Civil3DToolkit package by Paolo Serra (thank you Paolo :) )
 - Continue to [samples section](../samples/corridor)
 
 ## Version

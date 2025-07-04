@@ -1,0 +1,458 @@
+{
+  "Uuid": "7554efce-d095-4d98-9b97-3e4430fc3ee2",
+  "IsCustomNode": true,
+  "Category": "yourC3DFeeder.PSET",
+  "Description": "",
+  "Name": "AddPropertiesToObjects",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "DesignScript.Builtin.Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      },
+      "Autodesk.Object": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.Object",
+        "Value": "AutoCADNodes.dll"
+      },
+      "Autodesk.AutoCAD.DynamoNodes.Object": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.Object",
+        "Value": "AutoCADNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "534b03f2bd204652ba326e9094c55dab",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "dfd085f1290c4b30932d0a451e8f7bab",
+          "Name": "obj",
+          "Description": "The Object\n\nObject",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e0ef1d52f0b7417aaeea4a273aa651fa",
+          "Name": "propertySetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "243751daa8514136a4d9d4a43290f350",
+          "Name": "propertyName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ef05b4e103a0445d927ece46e1acefc0",
+          "Name": "propertyValue",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3a5e9460afc54d45b7bb58fc897df489",
+          "Name": "Object",
+          "Description": "Object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.PropertySetsExtensions.SetPropertyValueByName@Autodesk.AutoCAD.DynamoNodes.Object,string,string,var",
+      "Replication": "Auto",
+      "Description": "Sets the Property value on the Object by name\n\nPropertySetsExtensions.SetPropertyValueByName (obj: Object, propertySetName: string, propertyName: string, propertyValue: var): Object"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "e9c5fe34cca8470c82910ac6b7a38af1",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [
+        {
+          "Id": "18888437f0e84954b03a7eb5d388aef7",
+          "Name": "dic",
+          "Description": "dic",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f1b59e2818a9435fb98349051a140ef3",
+          "Name": "",
+          "Description": "objects",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "696dae55911249058b5fcb3dbe9a30b8",
+          "Name": "",
+          "Description": "psets",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "16396e1bd497481da197f405a6478f88",
+          "Name": "",
+          "Description": "properties",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f3fca2b21e544f64a206833709cd7ed6",
+          "Name": "",
+          "Description": "values",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "objects = DesignScript.Builtin.Dictionary.ValueAtKey(dic, \"objects\");\npsets = DesignScript.Builtin.Dictionary.ValueAtKey(dic, \"psetNames\");\nproperties = DesignScript.Builtin.Dictionary.ValueAtKey(dic, \"propertyNames\");\nvalues = DesignScript.Builtin.Dictionary.ValueAtKey(dic, \"propertyValues\");"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Inputs:\r\n# IN[0] = nested list of objects [[obj1, obj2], [obj3, obj4, ...], ...]\r\n# IN[1] = JSON dictionary as described\r\n\r\ndef convert_netdict_to_pydict(net_dict):\r\n    py_dict = {}\r\n    for key in net_dict.Keys:\r\n        py_dict[key] = net_dict[key]\r\n    return py_dict\r\n\r\n\r\nobject_groups = IN[0]\r\nproperty_data = IN[1]\r\n\r\n\r\nresult = None  # Initialize\r\n\r\n# Validate inputs\r\nif not isinstance(object_groups, list):\r\n    result = \"Input[0] must be a list of object groups.\"\r\nelif not all(isinstance(group, list) for group in object_groups):\r\n    result = \"Each item in Input[0] must be a list (group of objects).\"\r\nelif not isinstance(property_data, dict):\r\n    result = \"Input[1] must be a dictionary (parsed JSON).\"\r\nelse:\r\n    \r\n    flat_objects = []\r\n    flat_pset_names = []\r\n    flat_prop_names = []\r\n    flat_prop_values = []\r\n\r\n      # Flatten the object list\r\n    all_objects = [obj for group in object_groups for obj in group]\r\n\r\n    for obj in all_objects:\r\n        try:\r\n            layer = obj.Layer\r\n        except:\r\n            continue  # Skip if no Layer\r\n\r\n        if layer not in property_data:\r\n            continue  # Skip if layer not defined\r\n\r\n        layer_sets = convert_netdict_to_pydict(property_data[layer])\r\n            \r\n        for pset_name in layer_sets:\r\n            properties = convert_netdict_to_pydict(layer_sets[pset_name])\r\n            \r\n            if not isinstance(properties, dict) or not properties:\r\n                continue  # Skip empty or invalid property sets\r\n            \r\n            for prop_name in properties:\r\n                prop_value = properties[prop_name]\r\n                \r\n                flat_objects.append(obj)\r\n                flat_pset_names.append(pset_name)\r\n                flat_prop_names.append(prop_name)\r\n                flat_prop_values.append(prop_value)\r\n              \r\n\r\n\r\n    result = {\r\n        \"objects\": flat_objects,\r\n        \"psetNames\": flat_pset_names,\r\n        \"propertyNames\": flat_prop_names,\r\n        \"propertyValues\": flat_prop_values\r\n    }\r\n\r\n# Return only once\r\n    OUT = result\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "5e971c68dff241d9bb1129b1fc80731f",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "8bf32f6a676646129c4b73c1ad0a7be3",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c92f4afe45b64fa28e5153d4ec8cb8af",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eb09941609694ec7b68ec20836867256",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "ObjectsWithPSETs",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "9b674c3934ce4f70ade0bfd5cc2f4740",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0bca70bf7b584045927d0b542287f217",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "PSETsDefinitionsByLayer",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "6c46be260f254c239e2a47e7dba908ae",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fa37e739067c4420bca8cf0a2988c83a",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "Objects",
+      "Id": "5b0198642f344d4f866d0780d58c34ca",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "8498654af8024c81bcb5bd98bf9aa069",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "021f85b0cca14deab83d4a09c8027b2b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e19b3093f1f748db9b95d8a6f8d0c55c",
+          "Name": "list",
+          "Description": "List to filter duplicates out of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3589ddfcfc2e4b67a903959825796389",
+          "Name": "list",
+          "Description": "Filtered list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.UniqueItems@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Creates a new list containing all unique items in the given list.\n\nList.UniqueItems (list: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3a5e9460afc54d45b7bb58fc897df489",
+      "End": "e19b3093f1f748db9b95d8a6f8d0c55c",
+      "Id": "6d5b40fd53a64a80acdbdf524f14c40e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f1b59e2818a9435fb98349051a140ef3",
+      "End": "dfd085f1290c4b30932d0a451e8f7bab",
+      "Id": "68dac441833e404892c230087f7efbc4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "696dae55911249058b5fcb3dbe9a30b8",
+      "End": "e0ef1d52f0b7417aaeea4a273aa651fa",
+      "Id": "89bd418b4a43442284d9cbea1534023e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16396e1bd497481da197f405a6478f88",
+      "End": "243751daa8514136a4d9d4a43290f350",
+      "Id": "56ff4980aea34c799f976054de9528ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f3fca2b21e544f64a206833709cd7ed6",
+      "End": "ef05b4e103a0445d927ece46e1acefc0",
+      "Id": "a1a0543710ac420fba7571ad38046d1a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eb09941609694ec7b68ec20836867256",
+      "End": "18888437f0e84954b03a7eb5d388aef7",
+      "Id": "72728e7b292549189e607b37d79188ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0bca70bf7b584045927d0b542287f217",
+      "End": "8bf32f6a676646129c4b73c1ad0a7be3",
+      "Id": "d2b9a49126114d2db57d42c00cbeee42",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fa37e739067c4420bca8cf0a2988c83a",
+      "End": "c92f4afe45b64fa28e5153d4ec8cb8af",
+      "Id": "755c3ade3d6d4f4b9d01d642ec1d9437",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3589ddfcfc2e4b67a903959825796389",
+      "End": "8498654af8024c81bcb5bd98bf9aa069",
+      "Id": "2f8f15707c394fe8beea29720c32f254",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Civil3DToolkit",
+      "Version": "1.1.32",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "534b03f2bd204652ba326e9094c55dab"
+      ]
+    }
+  ],
+  "Author": "None provided",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.4.6671",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "534b03f2bd204652ba326e9094c55dab",
+        "Name": "PropertySetsExtensions.SetPropertyValueByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1406.7706561655341,
+        "Y": 8.7516733214740725
+      },
+      {
+        "Id": "e9c5fe34cca8470c82910ac6b7a38af1",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 554.70710388403859,
+        "Y": 0.0
+      },
+      {
+        "Id": "5e971c68dff241d9bb1129b1fc80731f",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 250.0,
+        "Y": 2.0559909512021477
+      },
+      {
+        "Id": "9b674c3934ce4f70ade0bfd5cc2f4740",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -177.75203107579193,
+        "Y": -43.420343468895737
+      },
+      {
+        "Id": "6c46be260f254c239e2a47e7dba908ae",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -246.86592677976785,
+        "Y": 149.68364766529049
+      },
+      {
+        "Id": "5b0198642f344d4f866d0780d58c34ca",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2853.51671028557,
+        "Y": 34.363051518075338
+      },
+      {
+        "Id": "021f85b0cca14deab83d4a09c8027b2b",
+        "Name": "List.UniqueItems",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2156.4823907268078,
+        "Y": 41.054757508458579
+      }
+    ],
+    "Annotations": [],
+    "X": -1905.5394901693692,
+    "Y": 38.599120510911405,
+    "Zoom": 1.0921896591619438
+  }
+}

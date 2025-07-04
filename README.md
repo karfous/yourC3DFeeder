@@ -28,11 +28,11 @@ I have prepared some samples for you, so you fully understand the principle.
 
 ### 🐞 BUG report and cooperation
 
-Create an [issue](https://github.com/karfous/DynamoC3DFeeder/issues) in order to inform others about possible problems and bugs.
+Create an [issue](https://github.com/karfous/yourC3DFeeder/issues) in order to inform others about possible problems and bugs.
 
 ### 💡 Suggestions
 
-Create an [issue](https://github.com/karfous/DynamoC3DFeeder/issues) so we can discuss your intentions and coordinate our time. Discuss your thought before pull request please.
+Create an [issue](https://github.com/karfous/yourC3DFeeder/issues) so we can discuss your intentions and coordinate our time. Discuss your thought before pull request please.
 
 ### 💪 Be independent
 

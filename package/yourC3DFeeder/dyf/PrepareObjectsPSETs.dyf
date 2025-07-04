@@ -1,0 +1,180 @@
+{
+  "Uuid": "6d894aae-5678-4640-a09f-08e71a251b10",
+  "IsCustomNode": true,
+  "Category": "yourC3DFeeder.JSON",
+  "Description": "",
+  "Name": "PrepareObjectsPSETs",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "DesignScript.Builtin.Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "import json\r\nimport copy\r\n\r\ndef resolve_psets(data):\r\n    resolved = {}\r\n\r\n    def collect_all_psets_and_props(name, visited=None):\r\n        if visited is None:\r\n            visited = set()\r\n        if name in visited or name not in data:\r\n            return set(), {}\r\n        visited.add(name)\r\n\r\n        obj = data[name]\r\n        local_psets = set(obj.get(\"psets\", []))\r\n        # local_props = obj.get(\"props\", {}).copy()\r\n        local_props = copy.deepcopy(obj.get(\"props\", {}))\r\n\r\n        # Recursively collect from members\r\n        for member in obj.get(\"members\", []):\r\n            member_psets, member_props = collect_all_psets_and_props(member, visited)\r\n            local_psets.update(member_psets)\r\n            \r\n            #BUG 001 REPAIRED - MERGING props definition in different locations\r\n            for key, val in member_props.items():\r\n                if key in local_props:\r\n                    # Merge dictionaries if the pset already exists\r\n                    # Make sure the props definition always wins over ancestors definitions in members\r\n                    merged = copy.deepcopy(val)\r\n                    merged.update(local_props[key])\r\n                    local_props[key] = merged\r\n                else:\r\n                    local_props[key] = val\r\n            #BUG 001 REPAIRED - \r\n\r\n\r\n        # Add any psets that appear in props but not declared in psets\r\n        local_psets.update(local_props.keys())\r\n\r\n        return local_psets, local_props\r\n\r\n    def build_props(name):\r\n        visited = set()  # Each top-level element gets its own visited tracker\r\n        psets, props = collect_all_psets_and_props(name, visited)\r\n        result = {}\r\n        for pset in psets:\r\n            result[pset] = props.get(pset, {})\r\n        return result\r\n\r\n\r\n    for key in data:\r\n        if key == \"PSETS\":\r\n            continue\r\n        resolved[key] = build_props(key)\r\n\r\n    return resolved\r\n\r\n# Main Dynamo input/output\r\njson_string = IN[0]\r\n\r\ntry:\r\n    data = json.loads(json_string)\r\n    #data = json_string\r\n    result = resolve_psets(data)\r\nexcept Exception as e:\r\n    result = {\"error\": str(e)}\r\n\r\nOUT = result\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "fcfd1b2ca4ba481b9e39edf889b5a2a8",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "15f5855223bd47499b5763bd9ac9972c",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "425557af4bbf431fb39e6d04681c9912",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "Parameter": {
+        "Name": "JSONString",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "bf1a2811c707492baee2491bfb8b746b",
+      "NodeType": "InputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7eee323c61824cfb91ea31d9fb5e3da3",
+          "Name": "",
+          "Description": "Input Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "ElementResolver": null,
+      "Symbol": "PSETsDefinitionsByLayer",
+      "Id": "4db1dc23d799400eb0c36cb133df1120",
+      "NodeType": "OutputNode",
+      "Inputs": [
+        {
+          "Id": "78495665a41b40f784d52d8d530eeb88",
+          "Name": "",
+          "Description": "Output Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "425557af4bbf431fb39e6d04681c9912",
+      "End": "78495665a41b40f784d52d8d530eeb88",
+      "Id": "c9ae892b40ad43ddadd10309e9b8e553",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7eee323c61824cfb91ea31d9fb5e3da3",
+      "End": "15f5855223bd47499b5763bd9ac9972c",
+      "Id": "41bc898ff4354a609ab6e59dc7ffa38e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Author": "None provided",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.4.6671",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -18.394733428955078,
+      "EyeY": 25.510959625244141,
+      "EyeZ": 56.7412109375,
+      "LookX": 13.394733428955078,
+      "LookY": -14.510959625244141,
+      "LookZ": -64.7412109375,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "fcfd1b2ca4ba481b9e39edf889b5a2a8",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 445.35721933225466,
+        "Y": -6.9097611229606173
+      },
+      {
+        "Id": "bf1a2811c707492baee2491bfb8b746b",
+        "Name": "Input",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 51.063677401534505,
+        "Y": -4.9634992425151836
+      },
+      {
+        "Id": "4db1dc23d799400eb0c36cb133df1120",
+        "Name": "Output",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 728.70283724315709,
+        "Y": -4.7065606513880311
+      }
+    ],
+    "Annotations": [],
+    "X": 130.72684950468619,
+    "Y": 257.126306453683,
+    "Zoom": 0.95404292488281262
+  }
+}
