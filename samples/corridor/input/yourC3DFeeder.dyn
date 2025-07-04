@@ -74,8 +74,8 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows you to select a file on the system and returns its file path",
-      "HintPath": "C:\\Users\\KaresJak\\Documents\\DynamoC3DFeeder-1\\samples\\corridor\\input\\psetsdefs.jsonc",
-      "InputValue": "..\\..\\..\\..\\..\\Documents\\DynamoC3DFeeder-1\\samples\\corridor\\input\\psetsdefs.jsonc"
+      "HintPath": "C:\\Users\\KaresJak\\Downloads\\yourC3DFeeder\\samples\\corridor\\input\\psetsdefs.jsonc",
+      "InputValue": ".\\psetsdefs.jsonc"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -155,8 +155,8 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows you to select a file on the system and returns its file path",
-      "HintPath": "C:\\Users\\KaresJak\\Documents\\DynamoC3DFeeder-1\\samples\\corridor\\input\\placeholders.json",
-      "InputValue": "..\\..\\..\\..\\..\\Documents\\DynamoC3DFeeder-1\\samples\\corridor\\input\\placeholders.json"
+      "HintPath": "C:\\Users\\KaresJak\\Downloads\\yourC3DFeeder\\samples\\corridor\\input\\placeholders.json",
+      "InputValue": ".\\placeholders.json"
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
@@ -641,6 +641,27 @@
         "bbe09d43ff084cdf960c5201b4edaade",
         "dbd29cdde41e45b099f14e9ed3d515a3"
       ]
+    },
+    {
+      "Name": "psetsdefs.jsonc",
+      "ReferenceType": "External",
+      "Nodes": [
+        "73606128b0764e25b39810b227c82ebe"
+      ]
+    },
+    {
+      "Name": "placeholders.json",
+      "ReferenceType": "External",
+      "Nodes": [
+        "1d1432ff69634413b000461847da722c"
+      ]
+    },
+    {
+      "Name": "psetsdefs-processed.json",
+      "ReferenceType": "External",
+      "Nodes": [
+        "17efc50648204d7e957c38d749e7641a"
+      ]
     }
   ],
   "Thumbnail": "",
@@ -854,7 +875,7 @@
         "HasNestedGroups": false,
         "Left": -1210.9662298805024,
         "Top": -1992.5922779724051,
-        "Width": 350.951164722082,
+        "Width": 283.93079894896528,
         "Height": 834.26600492822536,
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
@@ -944,8 +965,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 436.72704971553071,
-    "Y": 873.10118282187955,
-    "Zoom": 0.2812996168316923
+    "X": 480.45403984443419,
+    "Y": 881.23116369988782,
+    "Zoom": 0.28523657083892362
   }
 }

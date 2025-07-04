@@ -10,31 +10,31 @@
     }
   },
   "COLOR-PLACEHOLDER": {
-    "PSET-COLOR": {
-      "EXACT-COLOR": "WHITE"
-    },
     "PSET-PHASE": {
       "PROJECT-PHASE": "TEST"
+    },
+    "PSET-COLOR": {
+      "EXACT-COLOR": "WHITE"
     }
   },
   "PSET-PHASE": {},
   "COLOR-BLUE": {
+    "PSET-PHASE": {
+      "PROJECT-PHASE": "TEST"
+    },
     "PSET-COLOR": {
       "EXACT-COLOR": "BLUE"
     },
     "PSET-AUTHOR": {
       "AUTHOR": "JAKUB KARES"
-    },
-    "PSET-PHASE": {
-      "PROJECT-PHASE": "TEST"
     }
   },
   "COLOR-BASE": {
-    "PSET-COLOR": {
-      "EXACT-COLOR": "BLACK"
-    },
     "PSET-PHASE": {
       "PROJECT-PHASE": "TEST"
+    },
+    "PSET-COLOR": {
+      "EXACT-COLOR": "BLACK"
     }
   },
   "PSET-AUTHOR": {},
