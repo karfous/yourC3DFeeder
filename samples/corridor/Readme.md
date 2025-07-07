@@ -2,7 +2,14 @@
 
 This is a corridor sample that shows the most common use case. You usually want to create a corridor, make some changes, change subassemblies, add more regions etc. This is the common task for every construction project. **And it is covered in this sample**
 
-## Input
+## 💛 Make it run
+
+- select solids in dwg file
+- updat object selection in dynamo script
+- run script
+- check out new property sets in the solids
+
+## 🤷‍♂️ Input
 
 What are our inputs?
 
@@ -25,12 +32,12 @@ Check out
 - assemblies I use in each region
 - code shapes of each subassembly
 
-### Feeder_rev00.dyn
+### yourC3DFeeder.dyn
 
 This script will add properties and property sets. Check out its comments and notes. Make sure you installed package properly before RUN the script.
 
 **And here the magic happens.**
 
-## Output
+## 💨 Output
 
 If you try the running the script in the input folder, you can then easily check the result in output. Output is here just for you to check that you understand the script and that your results are the same as mine.
