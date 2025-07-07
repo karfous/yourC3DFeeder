@@ -1,8 +1,12 @@
 # Install
 
-Sorry guys, it would be better to use AUTODESK Publish package function, but I do not have time to cover this so only copy paste solution is now available
+You can install the package from github instruction below - or you can simply use Autodesk Dynamo package installer :)
 
-## Do this ...
+<img src="/pics/adskPublisher.png" width="300"/>
+
+## Github step by step install
+
+### First steps
 
 - Turn off your Civil 3D app
 - Find Roaming folder C:\Users\ {your USER}\AppData\Roaming\
@@ -17,7 +21,7 @@ Sorry guys, it would be better to use AUTODESK Publish package function, but I d
 
 - Hey, you are done ✅
 
-## After install ...
+### After install ...
 
 - Start Civil 3D
 - Start Dynamo
