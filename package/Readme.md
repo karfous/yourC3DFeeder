@@ -35,5 +35,5 @@ Let me know if working elsewhere :)
 | C3D version | Working |
 | ----------- | ------- |
 | 2024        | ✅      |
-| 2025        |         |
-| 2026        |         |
+| 2025        | ❗ be aware that [C3D Toolkit does not work here](https://forum.dynamobim.com/t/future-of-civil-3d-toolkit-and-camber-packages/98700/45)         |
+| 2026        |  ...      |
