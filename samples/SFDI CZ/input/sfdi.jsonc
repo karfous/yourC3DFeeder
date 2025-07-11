@@ -1,0 +1,118 @@
+{
+  "KONKRETNI-VOZOVKA": {
+    "psets": [],
+    "members": ["STD-VOZOVKA", "PROJ-E1", "UT-TL-4"],
+    "props": {
+      "CZ_I1": {
+        "Označení stavebního objektu": "SO101",
+        "Označení podobjektu": "-",
+        "Označení části objektu": "E1",
+        "Fáze projektu": "DSP",
+        "Název stavebního objektu": "SILNICE",
+        "Staničení od": "0",
+        "Staničení do": "1000"
+      },
+      "CZ_S1": {
+        "Materiál": "ACO 11+ 50/70",
+        "Specifikace": "1 - viz materiálová kniha",
+        "Podrobná specifikace": "ČSN 73 6121 + ČSN EN 13108-1",
+        "Reference": "SO101_E1-41_VPR"
+      }
+    }
+  },
+  "STD-VOZOVKA": {
+    "psets": [],
+    "members": [
+      "P-2",
+      "BARVA-ANTRACITOVA",
+      "M2-ZMODELU",
+      "M6-PROJEKCNI",
+      "UT-FAZE-TRVALA",
+      "UT-ZIV-20",
+      "UT-VLASTNIK-1"
+    ],
+    "props": {
+      "CZ_I1": {
+        "Označení šablony vlastností": "-",
+        "Označení elementu": "Vozovka",
+        "Skupina elementů": "Vozovka / chodník"
+      }
+    }
+  },
+
+  "PROJ-E1": {
+    "props": {
+      "CZ_E1": {
+        "Datum zahájení prací": 20250101,
+        "Datum dokončení": 20250701,
+        "Doba trvání": "P0Y6M0D",
+        "Datum uvedení do provozu": 20250702,
+        "Etapa výstavby": "ETAPA 1"
+      }
+    }
+  },
+
+  "UT-VLASTNIK-1": {
+    "props": {
+      "CZ_I1": {
+        "Vlastník": "SFDI",
+        "Správce": "SFDI"
+      }
+    }
+  },
+
+  "UT-FAZE-TRVALA": {
+    "props": {
+      "CZ_F1": {
+        "Fáze": "Trvalý stav"
+      }
+    }
+  },
+
+  "UT-TL-4": {
+    "props": {
+      "CZ_M6": {
+        "Tloušťka": 0.04
+      }
+    }
+  },
+
+  "UT-ZIV-20": {
+    "props": {
+      "CZ_U1": {
+        "Životnost": 20
+      }
+    }
+  },
+  "P-2": {
+    "props": {
+      "CZ_Z1": {
+        "Skupina přesnosti": "P2"
+      }
+    }
+  },
+
+  "BARVA-ANTRACITOVA": {
+    "props": {
+      "CZ_Z1": {
+        "Barva": "128;128;128"
+      }
+    }
+  },
+
+  "M2-ZMODELU": {
+    "props": {
+      "CZ_M2": {
+        "Způsob stanovení": "3D plocha"
+      }
+    }
+  },
+
+  "M6-PROJEKCNI": {
+    "props": {
+      "CZ_M6": {
+        "Způsob stanovení": "Projekční tloušťka"
+      }
+    }
+  }
+}
